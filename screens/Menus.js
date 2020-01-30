@@ -1,29 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, Text, View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Card from "../components/Card";
-export const MENUS = [
-  // {
-  //   id:1,
-  //   name:'PIZZA'
-  // },
-  // {
-  //   id:2,
-  //   name:'DOG'
-  // },
-  // {
-  //   id:3,
-  //   name:'CAT'
-  // },
-  // {
-  //   id:4,
-  //   name:'Vegetables'
-  // },
-  // {
-  //   id:6,
-  //   name:'Drinks'
-  // },
-  ]
-
 
 const Menus = ({navigation}) => {
 
@@ -38,7 +15,7 @@ useEffect(() => {
 } ,[])
 
   const onSelectMenu = (id) => {
-    const {name} = menus.find(menu=>menu._id===id);
+    const {name} = menus.find(menu=>menu._id === id);
     navigation.navigate({
       routeName: 'ConcreteMenu',
       params: { id, name }

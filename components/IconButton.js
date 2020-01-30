@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, TouchableWithoutFeedback, Text } from 'react-native'
 import {Ionicons} from '@expo/vector-icons'
-const emptyFunction = () => {}
+
 const IconButton = ({iconName, onPress, style, disabled}) => {
   return(
       <TouchableWithoutFeedback disabled={disabled}   onPress={onPress}>

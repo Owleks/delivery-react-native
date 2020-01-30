@@ -3,27 +3,11 @@ import {FlatList, Text, View, KeyboardAvoidingView, StyleSheet, ScrollView, Touc
 import Input from "../components/Input";
 import {SelectedContext} from "../App";
 import MenuItem from "../components/MenuItem";
-import isDisabled from "react-native-web/dist/modules/AccessibilityUtil/isDisabled";
-
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-const MENU_ITEMS_LIST= [...Array(150).keys()].map((el)=>({
-  id:`it${el}`,
-  name: `Name${el}`,
-  price: getRandomInt(el*10),
-  description:'desct super desrt sapld alskd lsk al akdslkdlask lask dlk lask dlask las lks aklasdksa klsa klsadk lask lka sldkasl kl'
-}));
-
-const simulateRequest = (ids) => (
-  new Promise((resolve => {
-    setTimeout(()=>{
-      resolve(MENU_ITEMS_LIST.filter(item=>ids.some(id=>item._id===id)));
-    }, 1500)
-  }))
-)
 const restaurantId = '5e315ebb189d66a4568479c3';
 const MyOrder = ({navigation}) => {
 

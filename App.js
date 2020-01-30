@@ -6,7 +6,6 @@ export const SelectedContext = createContext({
   totalPrice: 0
 });
 
-// Signed-in user context
 
 export default function App() {
   const [selected, changeSelected] = useState({});
@@ -15,11 +14,13 @@ export default function App() {
     changeSelected(selected);
     changeTotalPrice(totalPrice);
   },[changeSelected, changeTotalPrice]);
+
   const context = {
     selected,
     totalPrice,
     onChange
-  }
+  };
+
   return (
     <SelectedContext.Provider value={context}>
       <AppNavigator />

@@ -4,24 +4,6 @@ import MenuItem from "../components/MenuItem";
 
 import {SelectedContext} from "../App";
 
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
-
-const MENU_ITEMS_LIST= [...Array(150).keys()].map((el)=>({
-  id:`it${el}`,
-  name: `Name${el}`,
-  price: getRandomInt(el*10),
-  description:'desct super desrt sapld alskd lsk al akdslkdlask lask dlk lask dlask las lks aklasdksa klsa klsadk lask lka sldkasl kl'
-}));
-
-const simulateRequest = (id) => (
-  new Promise((resolve => {
-    setTimeout(()=>{resolve(MENU_ITEMS_LIST)}, 1500)
-  }))
-)
-
 const ConcterMenu = ({navigation}) => {
 
   const [items, changeItems] = useState([]);
@@ -33,14 +15,8 @@ const ConcterMenu = ({navigation}) => {
     fetch(`http://api.besmart.link:3000/menu-item/?menuId=${id}`)
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson)
         changeItems(responseJson);
       })
-
-    //TODO: REQUEWST TO GET all ITEMS
-    // simulateRequest(id).then(newItems=>{
-    //   changeItems(newItems)
-    // });
   },[]);
 
 
