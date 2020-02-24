@@ -7,7 +7,7 @@ const Menus = ({navigation}) => {
   const [menus, changeMenus] = useState([])
 
 useEffect(() => {
-  fetch(`http://api.besmart.link:3000/menu/?restaurantId=5e315ebb189d66a4568479c3`)
+  fetch(`http://api.besmart.link:3000/menu/?restaurantId=5e33068ef2c9aa262c43247d`)
     .then((response) => response.json())
     .then((responseJson) => {
       changeMenus(responseJson);
@@ -21,6 +21,7 @@ useEffect(() => {
       params: { id, name }
     })
   }
+  console.log(menus);
 return (
   <View>
     {
@@ -34,7 +35,7 @@ return (
               <Card style={styles.card}>
                 <Image
                   style={styles.menuImage}
-                  source={{uri: 'https://picsum.photos/200'}}
+                  source={{uri: `https://owleks-delivery-app.s3.eu-central-1.amazonaws.com/${item.image}`}}
                 />
                 <Text>{item.name}</Text>
               </Card>

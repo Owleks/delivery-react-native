@@ -1,5 +1,5 @@
 import React, {useContext, useMemo, useCallback} from 'react';
-import {TouchableOpacity, Text, StyleSheet} from "react-native";
+import {TouchableOpacity, Text, StyleSheet, View} from "react-native";
 import {Ionicons} from '@expo/vector-icons';
 import {SelectedContext} from '../App';
 const Cart = ({navigation}) => {
@@ -14,9 +14,11 @@ const Cart = ({navigation}) => {
       style={styles.container}
       onPress={onPressCart}
     >
-      <Text>{totalPrice.toString()}</Text>
+      <Text>{totalPrice.toFixed(2).toString()}</Text>
       <Ionicons name='ios-cart' size={25} />
-      <Text>{countItems.toString()}</Text>
+      <View style={styles.count}>
+        <Text style={styles.countText}>{countItems.toString()}</Text>
+      </View>
     </TouchableOpacity>
   )
 
@@ -27,6 +29,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingRight: 10
+  },
+  count: {
+    backgroundColor: 'red',
+    padding: 5,
+    width:20,
+    height: 20,
+    borderRadius: 10,
+    color: 'white',
+    justifyContent:'center',
+    alignItems: 'center',
+    position: 'relative',
+    right: 10,
+    bottom: 15
+  },
+  countText: {
+    fontSize:10
   }
 });
 

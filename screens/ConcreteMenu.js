@@ -34,7 +34,7 @@ const ConcterMenu = ({navigation}) => {
       totalPrice: totalPrice + add * item.price
     })
   }
-
+console.log(items)
   return(
     <View>
       <FlatList

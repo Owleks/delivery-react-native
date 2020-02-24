@@ -8,7 +8,7 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-const restaurantId = '5e315ebb189d66a4568479c3';
+const restaurantId = '5e33068ef2c9aa262c43247d';
 const MyOrder = ({navigation}) => {
 
   const [items, changeItems] = useState([]);
@@ -27,7 +27,7 @@ const MyOrder = ({navigation}) => {
     fetch(`http://api.besmart.link:3000/menu-item/?restaurantId=${restaurantId}`)
       .then((response) => response.json())
       .then((responseJson) => {
-        changeItems(responseJson);
+        changeItems(responseJson.filter(item=>selected[item._id]));
       })
   },[]);
 
@@ -66,7 +66,12 @@ const MyOrder = ({navigation}) => {
       }
     )})
       .then((response) => response.text())
-      .then((responseJson) => {navigation.navigate('Menus')})
+      .then((responseJson) => {
+        onChange({
+        selected: [] ,
+        totalPrice: 0
+      });
+        navigation.navigate('Menus')})
       .catch((e)=>console.log(e))
 
   }
@@ -74,7 +79,7 @@ const MyOrder = ({navigation}) => {
   const isDisabledMakeOrder = !(name&&phone&&address&&time&&comment&&totalPrice>0)
   return(
     <KeyboardAvoidingView>
-      <ScrollView style={styles.ordersContainer}>
+      <View style={styles.ordersContainer}>
         <Input
             label="Your name"
             value={name}
@@ -102,11 +107,13 @@ const MyOrder = ({navigation}) => {
           onChange={changeComment}
         />
         <Text style={styles.title}>Your order:</Text>
+
         <FlatList
+          keyExtractor={item => item._id}
           data={items}
           renderItem={({ item }) => (<MenuItem item={item} onChangeCount={onChangeCount} count={selected[item._id] || 0} />)}
         />
-      </ScrollView>
+      </View>
       <View style={styles.makeOrderContainer}>
         <View style={styles.countContainer}>
           <Text style={styles.totalPrice}>{totalPrice.toString()}</Text>

@@ -7,7 +7,7 @@ const MenuItem = ({item, onChangeCount, count}) => {
     <Card style={styles.card}>
       <Image
         style={styles.image}
-        source={{uri: `https://picsum.photos/200?random=${item.id}`}}
+        source={{uri: `https://owleks-delivery-app.s3.eu-central-1.amazonaws.com/${item.image}`}}
       />
       <View style={styles.info}>
         <Text style={styles.title}>{item.name}</Text>
